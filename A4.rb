@@ -12,7 +12,7 @@ def read_data
   return gets.chomp.split(" ")
 end
 
-def hanoi(n, src, tmp, dst) # n個の石板をsrcからdstへ移動
+def hanoi(n, a, b, dst) # n個の石板をsrcからdstへ移動
   if n == 1
     puts("move #{n}-disc from #{src} to #{dst}")
   else
