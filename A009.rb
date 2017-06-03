@@ -14,57 +14,59 @@ end
 
 TEST = ''
 
-def hanoi(n, src, tmp, dst) # n個の石板をsrcからdstへ移動
-  if n == 1
-    if TEST == "1"
-      puts("move #{n}-disc from #{src} to #{dst}")
-    end
-    # p discs[0]["Left"]
-    # p discs
-    circle = @discs[0][src].shift(1)[0]
-    @discs[0][dst].unshift(circle)
-    # p discs
-    @cnt += 1
-    if @cnt >= @loop
-      display(@discs)
-      exit()
-    end
-  else
-    hanoi(n-1, src, dst, tmp) # n-1個の石板をsrcからtmpへ移動
-    if TEST == "1"
-      puts("move #{n}-disc from #{src} to #{dst}")
-    end
-    # p discs
-    circle = @discs[0][src].shift(1)[0]
-    @discs[0][dst].unshift(circle)
-    @cnt += 1
-    if @cnt >= @loop
-      display(@discs)
-      exit()
-    end
-    hanoi(n-1, tmp, src, dst) # n-1個の石板をtmpからdstへ移動
-  end
-end
-
-def display(discs)
-  puts discs[0]["Left"].size == 0 ? "-" : discs[0]["Left"].reverse.join(" ")
-  puts discs[0]["Center"].size == 0 ? "-" : discs[0]["Center"].reverse.join(" ")
-  puts discs[0]["Right"].size == 0 ? "-" : discs[0]["Right"].reverse.join(" ")
-end
-
 h = read_header
-MAX_X = h[0].to_i
-MAX_Y = h[1].to_i
+max_y = h[0].to_i
+max_x = h[1].to_i
 x = 0
 y = 0
 cnt = 0
 beam = 0
 
+box = Array.new
 while s = gets
-    p s.chomp.split("")
+    box.push(s.chomp.split(""))
 end
-exit()
-(1..disc).each { |v| ary_init << v }
-@discs = ["Left" => ary_init, "Center" =>[], "Right" => []]
-hanoi(cnt, "Left", "Center", "Right")
-display(@discs)
+
+# 箱の外に出たら終了
+# beamの方向は0:左 1:右 2:上 3:下
+# 探索中に"\\"または"/"があった場合、方向転換する。
+while (0 <= x && x < max_x && 0 <= y && y < max_y)
+  case box[y][x]
+  when "\\" then
+    case beam
+    when 0 then
+      beam = 3
+    when 1 then
+      beam = 2
+    when 2 then
+      beam = 1
+    when 3 then
+      beam = 0
+    end
+  when "/" then
+    case beam
+    when 0 then
+      beam = 2
+    when 1 then
+      beam = 3
+    when 2 then
+      beam = 0
+    when 3 then
+      beam = 1
+    end
+  end
+  # 現在の方向へ1マス移動
+  case beam
+  when 0 then
+    x += 1
+  when 1 then
+    x -= 1
+  when 2 then
+    y -= 1
+  when 3 then
+    y += 1
+  end
+  cnt += 1
+end
+
+puts cnt

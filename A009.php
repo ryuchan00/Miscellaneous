@@ -1,8 +1,4 @@
 <?php
-//A009 ビームの反射
-//テストケース全パス
-//もう少しスマートに書けないか検討中です
-//柴田和樹、中野大輝
 $num = str_replace("\n", "", explode(" ",fgets(STDIN)));
 for($i = 0; $i < $num[0]; $i++){
     $box[$i] = str_replace("\n", "", str_split(fgets(STDIN)));
