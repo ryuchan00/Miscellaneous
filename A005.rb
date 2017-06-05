@@ -8,65 +8,61 @@ class PaizaBowl
     @frame = 1
   end
   
-  def start
+  def start(pins)
+    p pins
+    throw = 1
+    previous_pin = 0
+    one_frame = Array.new
     
+    pins.each do |pin|
+      one_frame.push(pin)
+      if spare?(pin, previous_pin, throw)
+        p @frame.to_s + " is spare"
+      end
+      if strike?(pin, throw)
+        p @frame.to_s + " is strike"
+        throw += 1
+      end
+      # if final_frame?
+      #   p @frame.to_s + " is final_frame"
+      # end
+      if throw >= 2
+        @pins[@frame] = one_frame
+        one_frame = []
+        throw = 0
+        previous_pin = 0
+        @frame += 1
+      else
+        previous_pin = pin
+      end
+      throw += 1
+    end
+  end
+  
+  def total
+    p @pins
+    return @pins.inject(:+)
   end
   
   private
   
   def final_frame?
-    return
+    return @frame == @frames ? true : false
   end
   
-  def spare?
+  def strike?(pin, throw)
+    return (pin == 10) && (throw == 1) ? true : false
   end
-  
-  def strike?
+
+  def spare?(pin, previous_pin, throw)
+    return (pin + previous_pin == 10) && (throw >= 2) ? true : false
   end
 end
 
 a, b, c = gets.chomp.split(" ").map(&:to_i)
 p = gets.chomp.split(" ").map(&:to_i)
 
-game = new PaizaBowl(a, b)
-
-filed = Array.new(H).map{ Array.new(W, ".") } 
-
-while d = gets
-  start_y = 0
-  # 読み込み
-  h_i ,w_i ,x_i = split_data(d)
-  
-  # y軸は上から参照する(下から参照すると抜け漏れが発生するため)
-  0.upto(H - 1) do |y|
-    cnt = 0
-    
-    x_i.upto(x_i + w_i - 1) do |x|
-      if filed[y][x] == "." then
-        cnt += 1
-      else
-        cnt = 0
-        break
-      end
-    end
-    
-    # '#'が出現する行を探索したか、yが底辺まで到達した場合、'#'埋め処理に入る
-    if cnt != w_i || y + 1 == H
-      if cnt != w_i then
-        start_y = y - 1
-      else
-        start_y = y
-      end
-      break
-    end
-  end
-  
-  # '#'埋め処理
-  start_y.downto(start_y - h_i + 1) do |yy|
-        x_i.upto(x_i + w_i - 1) do |x|
-          filed[yy][x] = "#"
-        end
-      end
-end
-
-filed.each { |f| puts f.join("")}
+game = PaizaBowl.new(a, b)
+game.start(p)
+puts game.total
+exit()
