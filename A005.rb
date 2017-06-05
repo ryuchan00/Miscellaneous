@@ -1,15 +1,35 @@
-# coding: utf-8
+class PaizaBowl
+  
+  def initialize(frames, pins)
+    @frames = frames
+    @pins = pins
 
-def read_header
-  return gets.chomp.split(" ").map(&:to_i)
+    @pins = Array.new(@frames + 1)
+    @frame = 1
+  end
+  
+  def start
+    
+  end
+  
+  private
+  
+  def final_frame?
+    return
+  end
+  
+  def spare?
+  end
+  
+  def strike?
+  end
 end
 
-def split_data(d)
-  return d.chomp.split(" ").map(&:to_i)
-end
+a, b, c = gets.chomp.split(" ").map(&:to_i)
+p = gets.chomp.split(" ").map(&:to_i)
 
-H, W, N = read_header
-# filed生成
+game = new PaizaBowl(a, b)
+
 filed = Array.new(H).map{ Array.new(W, ".") } 
 
 while d = gets
