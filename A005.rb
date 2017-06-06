@@ -1,11 +1,10 @@
 class PaizaBowl
   
   def initialize(frames, pin)
-    @frames = frames
-    @pin = pin
-
-    @pins = Array.new(@frames + 1)
-    @frame = 1
+    @frames = frames #フレーム数
+    @pin = pin #ピンの数
+    @pins = Array.new(@frames + 1) #ゲームスコアの配列
+    @frame = 1 #現在のフレーム数
   end
   
   def start(pins)
@@ -14,16 +13,17 @@ class PaizaBowl
     
     pins.each do |pin|
       one_frame.push(pin)
-      if !final_frame? then
-        if strike?(pin, throw)
-          throw += 1
-        end
-        if throw == 2
-          @pins[@frame] = one_frame
-          one_frame = []
-          throw = 0
-          @frame += 1
-        end
+      
+      next if final_frame?
+      
+      if strike?(pin, throw)
+        throw += 1
+      end
+      if throw == 2
+        @pins[@frame] = one_frame
+        one_frame = []
+        throw = 0
+        @frame += 1
       end
       throw += 1
     end
@@ -33,31 +33,27 @@ class PaizaBowl
   def add_bonus
     @frame = 0
     @pins.each do |v|
-      if v == nil
-        next
-      end
+      next if v == nil
       @frame += 1
       if final_frame? then
         case
-        when v[0] == @pin && v[1] == @pin
+        #2回連続ストライク
+        when strike?(v[0], 1) && strike?(v[1], 1)
           @pins[@frame].push(v[1] + v[2] * 2)
-        when v[0] == @pin
+        when strike?(v[0], 1)
           @pins[@frame].push(v[1] + v[2])
-        when v[0] >= 1 && v[1] >= 1 && v[0] + v[1] == @pin
+        when v[0] >= 1 && v[1] >= 1 && spare?(v[0] + v[1], 2)
           @pins[@frame].push(v[2])
         end
       else
-        if strike?(v[0], v.size)
-          if strike?(@pins[@frame + 1][0], @pins[@frame + 1].size) then
-            @pins[@frame].push(@pins[@frame + 1][0] + @pins[@frame + 2][0])
-          else
-            @pins[@frame].push(@pins[@frame + 1][0] + @pins[@frame + 1][1])
-          end
-          next
-        end
-        if spare?(v.inject(:+), v.size)
+        case
+        #2回連続ストライク
+        when strike?(v[0], v.size) && strike?(@pins[@frame + 1][0], @pins[@frame + 1].size)
+          @pins[@frame].push(@pins[@frame + 1][0] + @pins[@frame + 2][0])
+        when strike?(v[0], v.size)
+          @pins[@frame].push(@pins[@frame + 1][0] + @pins[@frame + 1][1])
+        when spare?(v.inject(:+), v.size)
           @pins[@frame].push(@pins[@frame + 1][0])
-          next
         end
       end
     end
@@ -65,7 +61,6 @@ class PaizaBowl
   
   def total
     @pins.compact!
-    # return @pins.inject(:+)
     return @pins.inject(0) { |sum ,i| sum + i.inject(:+)}
   end
   
@@ -79,8 +74,8 @@ class PaizaBowl
     return (pin == @pin) && (throw == 1) ? true : false
   end
 
-  def spare?(pins_total, throw)
-    return (pins_total == @pin) && (throw == 2) ? true : false
+  def spare?(pins, throw)
+    return (pins == @pin) && (throw == 2) ? true : false
   end
 end
 
@@ -91,4 +86,3 @@ game = PaizaBowl.new(a, b)
 game.start(p)
 game.add_bonus
 puts game.total
-exit()
