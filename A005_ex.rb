@@ -28,6 +28,9 @@ class PaizaBowl
   end
 
   def throw_one(*array_of_npins)
+    p "frame is " + @frame.to_s
+    p array_of_npins
+    #raiseで例外クラス、メッセージを与えている
     raise ArgumentError, "#{array_of_npins.inspect}" if illegal_throw_one?(array_of_npins)
 
     record(array_of_npins)
@@ -65,6 +68,7 @@ class PaizaBowl
 
     def calculate_score
       @scores = @pins.map { |pin| pin && pin.inject(&:+) }
+      p @score
       1.upto(@num_frames) do |frame|
         add_bonus_for(frame)
       end
@@ -74,7 +78,9 @@ class PaizaBowl
       if final_frame?(frame)
         add_bonus_for_final_frame
       else
+        p @pins.size
         pins_after = @pins[frame + 1, @pins.size].flatten
+        p pins_after
         if spare?(@pins[frame])
           @scores[frame] += pins_after[0]
         elsif strike?(@pins[frame])
