@@ -1,31 +1,21 @@
-class PaizaBowl
+class GhostLeg
 
-  def initialize(num_frames, num_pins)
-    @num_frames = num_frames
-    @num_pins   = num_pins
-
-    @pins = Array.new(@num_frames + 1)  # Use it with an origin of 1
-    @frame = 1
+  def initialize(length, vertical_bar, horizontal_bar)
+    @length = length
+    @v_bar = vertical_bar
+    @h_bar = horizontal_bar
+    @ghost_leg = Array.new(@length + 1).map{ Array.new(@v_bar + 1) } # 実際のインプットの番号に沿ったものを使う
+    p @ghost_leg
   end
 
-  def throw_all(array_of_npins)
-    loop do
-      if final_frame?(@frame)
-        p array_of_npins
-        throw_one(9,1,3)
-      else
-        npins = array_of_npins.shift
-        if strike?([npins])
-          throw_one(npins)
-        else
-          throw_one(npins, array_of_npins.shift)
-        end
-      end
-
-      break if final_frame?(@frame)
-
-      @frame += 1
+  def generate(array_of_bar)
+    array_of_bar.each do |bar|
+      @ghost_leg[bar[1]][bar[0]] = [bar[2], bar[0] + 1]
+      @ghost_leg[bar[2]][bar[0] + 1] = [bar[1] ,bar[0]]
     end
+    p @ghost_leg
+    p "-----"
+    @ghost_leg.each { |f| p f}
   end
 
   def throw_one(*array_of_npins)
@@ -103,10 +93,18 @@ end
 
 
 if __FILE__ == $0
-  num_frames, num_pins, num_throws = gets.split.map(&:to_i)
-  array_of_npins = gets.split.map(&:to_i)
+  length, vertical_bar, horizontal_bar = gets.split.map(&:to_i)
+  array_of_bar = Array.new()
+  while s = gets
+    array_of_bar.push(s.split.map(&:to_i))
+  end
+  # array_of_bar.each do |n|
+  #   p n
+  # end
+  p array_of_bar
 
-  pb = PaizaBowl.new(num_frames, num_pins)
-  pb.throw_all(array_of_npins)
-  puts pb.total_score
+  gl = GhostLeg.new(length, vertical_bar, horizontal_bar)
+  gl.generate(array_of_bar)
+  exit()
+  puts gl.trace()
 end
