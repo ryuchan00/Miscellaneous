@@ -18,6 +18,33 @@ class GhostLeg
     @ghost_leg.each { |f| p f}
   end
 
+  def trace
+    y = @length
+    x = 1
+    p y
+    p x
+    # p @ghost_leg
+    p @ghost_leg[y][x]
+    while y > 0
+      unless @ghost_leg[y][x].nil?
+        p @ghost_leg[y][x][0]
+        p "y " + y.to_s
+        p "x " + x.to_s
+        p @ghost_leg[y][x]
+        y, x = @ghost_leg[y][x]
+        p "y " + y.to_s
+        p "x " + x.to_s
+        # y -= 1
+        # p @ghost_leg[y][x][0]
+        # p @ghost_leg[y][x][1]
+        # x = @ghost_leg[y][x][1]
+        # p x
+      end
+      y -= 1
+    end
+    return x
+  end
+
   def throw_one(*array_of_npins)
     p "frame is " + @frame.to_s
     p array_of_npins
@@ -105,6 +132,6 @@ if __FILE__ == $0
 
   gl = GhostLeg.new(length, vertical_bar, horizontal_bar)
   gl.generate(array_of_bar)
-  exit()
-  puts gl.trace()
+  # exit()
+  puts gl.trace
 end
