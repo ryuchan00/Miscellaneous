@@ -6,3 +6,4 @@ function sumOfInts(int ...$ints)
 }
 
 var_dump(sumOfInts(2, '3', 4.1));
+?>
