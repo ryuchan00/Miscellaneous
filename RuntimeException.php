@@ -11,8 +11,9 @@ if ($iNum2 == 0){
 throw new RuntimeException("Division by Zero");
 }
 $iResult = $iNum1 / $iNum2;
-echo ("Division Result of \$iNum1 and $iNum2 = ".($iResult)."<br/>");
+echo ("Division Result of \$iNum1 and $iNum2 = ".($iResult).PHP_EOF);
 }
 catch (RuntimeException $e){
 echo ("Division by Zero is not possible");
 }
+echo "after cathc block.";
