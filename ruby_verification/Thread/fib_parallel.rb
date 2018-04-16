@@ -13,3 +13,7 @@ Process.waitall
 # 63245986
 # 63245986
 # ruby ruby_verification/Thread/fib_parallel.rb  11.75s user 0.26s system 179% cpu 6.693 total
+
+# GVLの制約を逃れるて並列化にできるが、デメリットが2つある
+# プロセスの起動が遅いこと
+# メモリの共有を行わないこと(破壊的な変更をしても、各プロセス間で変更は共有されない)
