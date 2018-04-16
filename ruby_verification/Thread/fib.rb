@@ -8,9 +8,7 @@ end
 puts fib(38)
 puts fib(38)
 
-__END__
-$ time ruby ruby_verification/Thread/fib.rb
-63245986
-63245986
-ruby ruby_verification/Thread/fib.rb  8.94s user 0.05s system 98% cpu 9.090 total
-
+# $ time ruby ruby_verification/Thread/fib.rb
+# 63245986
+# 63245986
+# ruby ruby_verification/Thread/fib.rb  18.68s user 0.41s system 98% cpu 19.465 total
