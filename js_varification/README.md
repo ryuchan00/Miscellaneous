@@ -1,0 +1,3 @@
+# 速習TypeScript
+
+[速習TypeScript: altJSのデファクトスタンダートを素早く学ぶ！ 速習シリーズ | 山田祥寛 | 工学 | Kindleストア | Amazon](https://www.amazon.co.jp/%E9%80%9F%E7%BF%92TypeScript-altJS%E3%81%AE%E3%83%87%E3%83%95%E3%82%A1%E3%82%AF%E3%83%88%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%88%E3%82%92%E7%B4%A0%E6%97%A9%E3%81%8F%E5%AD%A6%E3%81%B6%EF%BC%81-%E9%80%9F%E7%BF%92%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA-%E5%B1%B1%E7%94%B0%E7%A5%A5%E5%AF%9B-ebook/dp/B0733113NK)
