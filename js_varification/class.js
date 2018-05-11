@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var Person = (function () {
     // コンストラクター
     function Person(name, sex) {
@@ -144,3 +149,63 @@ var Wings;
         MainApp.foo2 = foo2;
     })(MainApp = Wings.MainApp || (Wings.MainApp = {}));
 })(Wings || (Wings = {}));
+console.log('継承/実装');
+console.log('オーバーライド');
+var Person5 = (function () {
+    // コストラクター(name/sexプロパティの初期化)
+    function Person5(name, sex) {
+        this.name = name;
+        this.sex = sex;
+    }
+    Person5.prototype.show = function () {
+        return this.name + "\u306F" + this.sex + "\u3067\u3059";
+    };
+    // オーバーライドの実験用、BusinessPersonクラスに継承された時に上書きされるはず
+    Person5.prototype.work = function () {
+        return this.name + "\u306F\u5168\u304F\u50CD\u304D\u307E\u305B\u3093";
+    };
+    return Person5;
+}());
+// Personクラスを継承したBusinessPersonクラスを定義
+var BusinessPerson = (function (_super) {
+    __extends(BusinessPerson, _super);
+    // コンストラクターをオーバーライド
+    function BusinessPerson(name, sex, clazz) {
+        _super.call(this, name, sex);
+        this.clazz = clazz;
+    }
+    // 1. 派生クラス独自のメソッドを定義
+    BusinessPerson.prototype.show = function () {
+        return _super.prototype.show.call(this) + (this.clazz + "\u3067\u3059");
+    };
+    BusinessPerson.prototype.work = function () {
+        return this.name + "\u306F\u30C6\u30AD\u30D1\u30AD\u50CD\u304D\u307E\u3059\u3002";
+    };
+    return BusinessPerson;
+}(Person5));
+var p5 = new BusinessPerson('りお', '女', 'super engineer');
+console.log(p5.show());
+console.log(p5.work());
+console.log('抽象クラス');
+// 2. 抽象クラスを宣言
+var Figure2 = (function () {
+    function Figure2(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    return Figure2;
+}());
+var Triangle = (function (_super) {
+    __extends(Triangle, _super);
+    function Triangle() {
+        _super.apply(this, arguments);
+    }
+    // 抽象メソッドをオーバーライド
+    Triangle.prototype.getArea = function () {
+        return this.width + this.height / 2;
+    };
+    return Triangle;
+}(Figure2));
+var t2 = new Triangle(10, 5);
+console.log(t2.getArea());
+console.log('インターフェース');

@@ -130,3 +130,61 @@ namespace Wings {
     }
 }
 
+console.log('継承/実装');
+console.log('オーバーライド');
+class Person5 {
+    // 2. protectedメンバーを準備
+    protected name: string;
+    protected sex: string;
+    // コストラクター(name/sexプロパティの初期化)
+    constructor(name: string, sex: string) {
+        this.name = name;
+        this.sex = sex;
+    }
+    show(): string {
+        return `${this.name}は${this.sex}です`;
+    }
+    // オーバーライドの実験用、BusinessPersonクラスに継承された時に上書きされるはず
+    work(): string {
+        return `${this.name}は全く働きません`;
+    }
+}
+
+// Personクラスを継承したBusinessPersonクラスを定義
+class BusinessPerson extends Person5 {
+    protected clazz: string;
+    // コンストラクターをオーバーライド
+    constructor(name: string,sex:string,clazz:string) {
+        super(name, sex);
+        this.clazz = clazz;
+    }
+    // 1. 派生クラス独自のメソッドを定義
+    show(): string {
+        return super.show() + `${this.clazz}です`
+    }
+    work(): string {
+        return `${this.name}はテキパキ働きます。`;
+    }
+}
+let p5 = new BusinessPerson('りお', '女', 'super engineer');
+console.log(p5.show());
+console.log(p5.work());
+
+console.log('抽象クラス');
+// 2. 抽象クラスを宣言
+abstract class Figure2 {
+    constructor(protected width: number, protected height : number) {
+    }
+    // 1. 抽象メソッドとしてgetAreaを準備
+    abstract getArea(): number;
+}
+class Triangle extends Figure2 {
+    // 抽象メソッドをオーバーライド
+    getArea(): number {
+        return this.width + this.height / 2;
+    }
+}
+let t2 = new Triangle(10, 5);
+console.log(t2.getArea());
+
+console.log('インターフェース');
