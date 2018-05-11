@@ -88,3 +88,59 @@ var Figure = (function () {
 }());
 console.log(Figure.Pi);
 console.log(Figure.circle(5));
+console.log('名前空間');
+// Typescriptは、デフォルトで名前空間は以下の要素へのアクセスを許可しません。
+// exportキーワードで、外からのアクセスが可能であることを明示的に宣言してください。
+// 1. MainApp名前空間を定義
+var MainApp;
+(function (MainApp) {
+    var Hoge = (function () {
+        function Hoge(value) {
+            this.value = value;
+            console.log(this.value);
+        }
+        return Hoge;
+    }());
+    MainApp.Hoge = Hoge;
+    function foo() {
+        console.log('MainApp function');
+    }
+    MainApp.foo = foo;
+})(MainApp || (MainApp = {}));
+// 2.名前空間配下のクラス/関数の呼び出し
+var h = new MainApp.Hoge('rubykaigi2018 !!');
+MainApp.foo();
+console.log('階層的な名前空間');
+var Wings;
+(function (Wings) {
+    var MainApp;
+    (function (MainApp) {
+        var Hoge = (function () {
+            function Hoge() {
+            }
+            return Hoge;
+        }());
+        MainApp.Hoge = Hoge;
+        function foo() {
+        }
+        MainApp.foo = foo;
+    })(MainApp = Wings.MainApp || (Wings.MainApp = {}));
+})(Wings || (Wings = {}));
+var h2 = new Wings.MainApp.Hoge();
+Wings.MainApp.foo();
+console.log('namespaceを入れ子にする');
+var Wings;
+(function (Wings) {
+    var MainApp;
+    (function (MainApp) {
+        var Hoge2 = (function () {
+            function Hoge2() {
+            }
+            return Hoge2;
+        }());
+        MainApp.Hoge2 = Hoge2;
+        function foo2() {
+        }
+        MainApp.foo2 = foo2;
+    })(MainApp = Wings.MainApp || (Wings.MainApp = {}));
+})(Wings || (Wings = {}));

@@ -91,3 +91,42 @@ class Figure {
 }
 console.log(Figure.Pi);
 console.log(Figure.circle(5));
+
+console.log('名前空間');
+// Typescriptは、デフォルトで名前空間は以下の要素へのアクセスを許可しません。
+// exportキーワードで、外からのアクセスが可能であることを明示的に宣言してください。
+// 1. MainApp名前空間を定義
+namespace MainApp {
+    export class Hoge {
+        constructor(private value: string) {
+            console.log(this.value);
+        }
+    }
+    export function foo() {
+        console.log('MainApp function');
+    }
+}
+// 2.名前空間配下のクラス/関数の呼び出し
+let h = new MainApp.Hoge('rubykaigi2018 !!');
+MainApp.foo();
+
+console.log('階層的な名前空間');
+namespace Wings.MainApp {
+    export class Hoge {
+    }
+    export function foo() {
+    }
+}
+let h2 = new Wings.MainApp.Hoge();
+Wings.MainApp.foo();
+
+console.log('namespaceを入れ子にする');
+namespace Wings {
+    export namespace MainApp {
+        export class Hoge2 {
+        }
+        export function foo2 {
+        }
+    }
+}
+
