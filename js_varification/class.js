@@ -47,6 +47,9 @@ var p3 = new Person3('まりな', '女');
 console.log(p3.show());
 console.log('getter/setterアクセサー');
 // privateプロパティにアクセスするための特別なメソッドです。
+// 利点
+// - 読み書きができる
+// - 値チェック/戻り値の加工などが可能
 var Person4 = (function () {
     function Person4() {
     }
@@ -70,3 +73,18 @@ var Person4 = (function () {
 var p4 = new Person4();
 p4.age = 10;
 console.log(p4.age);
+console.log('静的メンバー');
+var Figure = (function () {
+    function Figure() {
+    }
+    // 静的メソッドcircle(園の面積)
+    Figure.circle = function (radius) {
+        // 静的メンバーにアクセスする際にも、thisを明示的にしなくてはならない
+        return radius + radius + this.Pi;
+    };
+    // 静的プロパティPi(円周率)
+    Figure.Pi = 3.14159;
+    return Figure;
+}());
+console.log(Figure.Pi);
+console.log(Figure.circle(5));
