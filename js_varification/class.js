@@ -50,5 +50,23 @@ console.log('getter/setterアクセサー');
 var Person4 = (function () {
     function Person4() {
     }
+    Object.defineProperty(Person4.prototype, "age", {
+        // getterアクセサー
+        get: function () {
+            return this._age;
+        },
+        // setterアクセサー
+        set: function (value) {
+            if (value < 0) {
+                throw new RangeError('ageプロパティは正数で指定してください');
+            }
+            this._age = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Person4;
 }());
+var p4 = new Person4();
+p4.age = 10;
+console.log(p4.age);

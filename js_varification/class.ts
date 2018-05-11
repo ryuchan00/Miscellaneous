@@ -45,6 +45,7 @@ class Person3 {
     // シンプルに書くとしたらこんな感じ
     constructor(private name: string, private sex: string) {
     }
+
     // 3. privateプロパティにもアクセス可能
     public show(): string {
         // 2. クラス内からアクセス可能
@@ -58,5 +59,19 @@ console.log('getter/setterアクセサー');
 // privateプロパティにアクセスするための特別なメソッドです。
 class Person4 {
     private _age: number;
-    //
+    // getterアクセサー
+    get age(): number {
+        return this._age
+    }
+
+    // setterアクセサー
+    set age(value: number) {
+        if (value < 0) {
+            throw new RangeError('ageプロパティは正数で指定してください');
+        }
+        this._age = value;
+    }
 }
+let p4 = new Person4();
+p4.age = 10;
+console.log(p4.age);
