@@ -141,9 +141,11 @@ class Person5 {
         this.name = name;
         this.sex = sex;
     }
+
     show(): string {
         return `${this.name}は${this.sex}です`;
     }
+
     // オーバーライドの実験用、BusinessPersonクラスに継承された時に上書きされるはず
     work(): string {
         return `${this.name}は全く働きません`;
@@ -154,14 +156,16 @@ class Person5 {
 class BusinessPerson extends Person5 {
     protected clazz: string;
     // コンストラクターをオーバーライド
-    constructor(name: string,sex:string,clazz:string) {
+    constructor(name: string, sex: string, clazz: string) {
         super(name, sex);
         this.clazz = clazz;
     }
+
     // 1. 派生クラス独自のメソッドを定義
     show(): string {
         return super.show() + `${this.clazz}です`
     }
+
     work(): string {
         return `${this.name}はテキパキ働きます。`;
     }
@@ -173,8 +177,9 @@ console.log(p5.work());
 console.log('抽象クラス');
 // 2. 抽象クラスを宣言
 abstract class Figure2 {
-    constructor(protected width: number, protected height : number) {
+    constructor(protected width: number, protected height: number) {
     }
+
     // 1. 抽象メソッドとしてgetAreaを準備
     abstract getArea(): number;
 }
@@ -188,3 +193,46 @@ let t2 = new Triangle(10, 5);
 console.log(t2.getArea());
 
 console.log('インターフェース');
+// TypScriptの継承には、一度に一つのクラスしか継承できない点です。
+// 複数のクラスを同時に継承することはできません(この性質を単一継承
+// インターフェースは、全てのメソットが抽象メソッドである特別なクラス
+// 1. getAreaメソッドを持ったFigureインターフェースを定義
+interface Figure3 {
+    getArea(): number;
+}
+// 2. Figureインターフェースを実装したTriangleクラスを準備
+class Triangle3 implements Figure3 {
+    constructor(private width: number, protected height: number) {
+    }
+
+    // getAreaメソッドを実装
+    getArea(): number {
+        return this.width * this.height / 2;
+    }
+}
+// 2. Figure型の変数にTriangle3オブジェクトを代入
+let t3: Figure3 = new Triangle3(10, 5);
+console.log(t3.getArea());
+
+console.log('型注釈としてのインターフェイス');
+// 1. Car型を定義
+interface Car {
+    type: string; // プロパティシグニチャ
+    run(): void; // メソッドシグニチャ
+}
+// 2. Car型の変数cを宣言
+let c: Car = {
+    type: 'トラック',
+    run() {
+        console.log(`${this.type}が走ります。`);
+    }
+};
+c.run(); // トラックが走ります。
+
+interface Car2 {
+    (type: string): string;
+}
+let c2: Car2 = function (type: string): string {
+    return `車種は、${type}`;
+};
+console.log(c2('軽自動車'));

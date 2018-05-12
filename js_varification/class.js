@@ -209,3 +209,31 @@ var Triangle = (function (_super) {
 var t2 = new Triangle(10, 5);
 console.log(t2.getArea());
 console.log('インターフェース');
+// 2. Figureインターフェースを実装したTriangleクラスを準備
+var Triangle3 = (function () {
+    function Triangle3(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    // getAreaメソッドを実装
+    Triangle3.prototype.getArea = function () {
+        return this.width * this.height / 2;
+    };
+    return Triangle3;
+}());
+// 2. Figure型の変数にTriangle3オブジェクトを代入
+var t3 = new Triangle3(10, 5);
+console.log(t3.getArea());
+console.log('型注釈としてのインターフェイス');
+// 2. Car型の変数cを宣言
+var c = {
+    type: 'トラック',
+    run: function () {
+        console.log(this.type + "\u304C\u8D70\u308A\u307E\u3059\u3002");
+    }
+};
+c.run(); // トラックが走ります。
+var c2 = function (type) {
+    return "\u8ECA\u7A2E\u306F\u3001" + type;
+};
+console.log(c2('軽自動車'));
