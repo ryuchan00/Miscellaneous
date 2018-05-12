@@ -237,3 +237,48 @@ var c2 = function (type) {
     return "\u8ECA\u7A2E\u306F\u3001" + type;
 };
 console.log(c2('軽自動車'));
+console.log('型としてのthis');
+var MyClass = (function () {
+    // コンストラクター(現在地currentを初期化
+    function MyClass(_value) {
+        this._value = _value;
+    }
+    Object.defineProperty(MyClass.prototype, "value", {
+        // 現在地を取得するgetter
+        get: function () {
+            return this._value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 与えられた値valueで加算
+    MyClass.prototype.add = function (value) {
+        this._value += value;
+        return this;
+    };
+    // 与えられた値valueで減算
+    MyClass.prototype.minus = function (value) {
+        this._value -= value;
+        return this;
+    };
+    return MyClass;
+}());
+// 1. 10+10-5の計算
+var clazz = new MyClass(10);
+console.log(clazz.add(10).minus(5).value); // 15
+console.log('ジェネリック型の定義');
+// 1. ジェネリック対応のMyGenericsクラス
+var MyGenerics = (function () {
+    function MyGenerics() {
+    }
+    // T型の値を返すgetValueメソッド
+    MyGenerics.prototype.getValue = function () {
+        return this.value;
+    };
+    return MyGenerics;
+}());
+// 2. MyGenericsクラスにstring型を割り当て
+var g = new MyGenerics();
+// 3. valueプロパティに文字列型の値を代入
+g.value = 'Hoge';
+console.log(g.getValue());

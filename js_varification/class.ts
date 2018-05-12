@@ -236,3 +236,47 @@ let c2: Car2 = function (type: string): string {
     return `車種は、${type}`;
 };
 console.log(c2('軽自動車'));
+
+console.log('型としてのthis');
+class MyClass {
+    // コンストラクター(現在地currentを初期化
+    constructor(private _value: number) {
+    }
+
+    // 現在地を取得するgetter
+    get value(): number {
+        return this._value;
+    }
+
+    // 与えられた値valueで加算
+    add(value: number): this {
+        this._value += value;
+        return this;
+    }
+
+    // 与えられた値valueで減算
+    minus(value: number): this {
+        this._value -= value;
+        return this;
+    }
+}
+// 1. 10+10-5の計算
+let clazz = new MyClass(10);
+console.log(clazz.add(10).minus(5).value); // 15
+
+console.log('ジェネリック型の定義');
+// 1. ジェネリック対応のMyGenericsクラス
+class MyGenerics<T> {
+    // T型のvalueプロパティ
+    value: T;
+    // T型の値を返すgetValueメソッド
+    getValue(): T {
+        return this.value;
+    }
+}
+// 2. MyGenericsクラスにstring型を割り当て
+let g = new MyGenerics<string>();
+// 3. valueプロパティに文字列型の値を代入
+g.value = 'Hoge';
+console.log(g.getValue());
+
