@@ -280,3 +280,25 @@ let g = new MyGenerics<string>();
 g.value = 'Hoge';
 console.log(g.getValue());
 
+console.log('型引数の制約');
+// ジェネリック型で行うべき処理によっては、渡すべき型を制限したいこともあります。
+// そのような場合には、extendキーワードを利用します。
+
+// 継承関係にあるHoge/Fooクラス
+class Hoge {
+}
+class FooBar extends Hoge {
+}
+ // 1. Hoge、またはその派生クラスだけを受け入れるジェネリック型
+class MyGenerics2<T extends Hoge> {
+    value: T;
+    getValue():T{
+        return this.value;
+    }
+}
+// 2. ジェネリック型にFooBar型を紐付け
+let g2 = new MyGenerics2<FooBar>();
+g2.value = new FooBar();
+console.log(g2.getValue());
+
+

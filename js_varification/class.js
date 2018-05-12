@@ -282,3 +282,32 @@ var g = new MyGenerics();
 // 3. valueプロパティに文字列型の値を代入
 g.value = 'Hoge';
 console.log(g.getValue());
+console.log('型引数の制約');
+// ジェネリック型で行うべき処理によっては、渡すべき型を制限したいこともあります。
+// そのような場合には、extendキーワードを利用します。
+// 継承関係にあるHoge/Fooクラス
+var Hoge = (function () {
+    function Hoge() {
+    }
+    return Hoge;
+}());
+var FooBar = (function (_super) {
+    __extends(FooBar, _super);
+    function FooBar() {
+        _super.apply(this, arguments);
+    }
+    return FooBar;
+}(Hoge));
+// 1. Hoge、またはその派生クラスだけを受け入れるジェネリック型
+var MyGenerics2 = (function () {
+    function MyGenerics2() {
+    }
+    MyGenerics2.prototype.getValue = function () {
+        return this.value;
+    };
+    return MyGenerics2;
+}());
+// 2. ジェネリック型にFooBar型を紐付け
+var g2 = new MyGenerics2();
+g2.value = new FooBar();
+console.log(g2.getValue());
