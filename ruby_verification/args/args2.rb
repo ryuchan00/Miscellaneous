@@ -13,4 +13,5 @@ def greet2(name, **messages)
   p messages[:no_args] # nil
 end
 
-greet2('name', id: 3, type: 4)
+greet2('name', id: 1, type: 2, memo: {body: 'body'})
+greet2('name', {id: 3, type: 4, memo: {subject: 'subject'}})
