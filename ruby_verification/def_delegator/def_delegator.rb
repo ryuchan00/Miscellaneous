@@ -31,6 +31,6 @@ p q.queue # => [42]
 
 # def_delegators
 # メソッドの委譲先をまとめて設定します。
-p q.size
-p q << 99
-p q.map { |n| n % 2 == 0 }
+p q.size # 1
+p q << 99 # [42, 99]
+p q.map { |n| n % 2 == 0 } # [true, false]
