@@ -1,0 +1,484 @@
+x :-5
+y :-5
+fx:25
+fy:25
+x :-5
+y :-4
+fx:25
+fy:16
+x :-5
+y :-3
+fx:25
+fy:9
+x :-5
+y :-2
+fx:25
+fy:4
+x :-5
+y :-1
+fx:25
+fy:1
+x :-5
+y :0
+fx:25
+fy:0
+x :-5
+y :1
+fx:25
+fy:1
+x :-5
+y :2
+fx:25
+fy:4
+x :-5
+y :3
+fx:25
+fy:9
+x :-5
+y :4
+fx:25
+fy:16
+x :-5
+y :5
+fx:25
+fy:25
+x :-4
+y :-5
+fx:16
+fy:25
+x :-4
+y :-4
+fx:16
+fy:16
+x :-4
+y :-3
+fx:16
+fy:9
+x :-4
+y :-2
+fx:16
+fy:4
+x :-4
+y :-1
+fx:16
+fy:1
+x :-4
+y :0
+fx:16
+fy:0
+x :-4
+y :1
+fx:16
+fy:1
+x :-4
+y :2
+fx:16
+fy:4
+x :-4
+y :3
+fx:16
+fy:9
+x :-4
+y :4
+fx:16
+fy:16
+x :-4
+y :5
+fx:16
+fy:25
+x :-3
+y :-5
+fx:9
+fy:25
+x :-3
+y :-4
+fx:9
+fy:16
+x :-3
+y :-3
+fx:9
+fy:9
+x :-3
+y :-2
+fx:9
+fy:4
+x :-3
+y :-1
+fx:9
+fy:1
+x :-3
+y :0
+fx:9
+fy:0
+x :-3
+y :1
+fx:9
+fy:1
+x :-3
+y :2
+fx:9
+fy:4
+x :-3
+y :3
+fx:9
+fy:9
+x :-3
+y :4
+fx:9
+fy:16
+x :-3
+y :5
+fx:9
+fy:25
+x :-2
+y :-5
+fx:4
+fy:25
+x :-2
+y :-4
+fx:4
+fy:16
+x :-2
+y :-3
+fx:4
+fy:9
+x :-2
+y :-2
+fx:4
+fy:4
+x :-2
+y :-1
+fx:4
+fy:1
+x :-2
+y :0
+fx:4
+fy:0
+x :-2
+y :1
+fx:4
+fy:1
+x :-2
+y :2
+fx:4
+fy:4
+x :-2
+y :3
+fx:4
+fy:9
+x :-2
+y :4
+fx:4
+fy:16
+x :-2
+y :5
+fx:4
+fy:25
+x :-1
+y :-5
+fx:1
+fy:25
+x :-1
+y :-4
+fx:1
+fy:16
+x :-1
+y :-3
+fx:1
+fy:9
+x :-1
+y :-2
+fx:1
+fy:4
+x :-1
+y :-1
+fx:1
+fy:1
+x :-1
+y :0
+fx:1
+fy:0
+x :-1
+y :1
+fx:1
+fy:1
+x :-1
+y :2
+fx:1
+fy:4
+x :-1
+y :3
+fx:1
+fy:9
+x :-1
+y :4
+fx:1
+fy:16
+x :-1
+y :5
+fx:1
+fy:25
+x :0
+y :-5
+fx:0
+fy:25
+x :0
+y :-4
+fx:0
+fy:16
+x :0
+y :-3
+fx:0
+fy:9
+x :0
+y :-2
+fx:0
+fy:4
+x :0
+y :-1
+fx:0
+fy:1
+x :0
+y :0
+fx:0
+fy:0
+x :0
+y :1
+fx:0
+fy:1
+x :0
+y :2
+fx:0
+fy:4
+x :0
+y :3
+fx:0
+fy:9
+x :0
+y :4
+fx:0
+fy:16
+x :0
+y :5
+fx:0
+fy:25
+x :1
+y :-5
+fx:1
+fy:25
+x :1
+y :-4
+fx:1
+fy:16
+x :1
+y :-3
+fx:1
+fy:9
+x :1
+y :-2
+fx:1
+fy:4
+x :1
+y :-1
+fx:1
+fy:1
+x :1
+y :0
+fx:1
+fy:0
+x :1
+y :1
+fx:1
+fy:1
+x :1
+y :2
+fx:1
+fy:4
+x :1
+y :3
+fx:1
+fy:9
+x :1
+y :4
+fx:1
+fy:16
+x :1
+y :5
+fx:1
+fy:25
+x :2
+y :-5
+fx:4
+fy:25
+x :2
+y :-4
+fx:4
+fy:16
+x :2
+y :-3
+fx:4
+fy:9
+x :2
+y :-2
+fx:4
+fy:4
+x :2
+y :-1
+fx:4
+fy:1
+x :2
+y :0
+fx:4
+fy:0
+x :2
+y :1
+fx:4
+fy:1
+x :2
+y :2
+fx:4
+fy:4
+x :2
+y :3
+fx:4
+fy:9
+x :2
+y :4
+fx:4
+fy:16
+x :2
+y :5
+fx:4
+fy:25
+x :3
+y :-5
+fx:9
+fy:25
+x :3
+y :-4
+fx:9
+fy:16
+x :3
+y :-3
+fx:9
+fy:9
+x :3
+y :-2
+fx:9
+fy:4
+x :3
+y :-1
+fx:9
+fy:1
+x :3
+y :0
+fx:9
+fy:0
+x :3
+y :1
+fx:9
+fy:1
+x :3
+y :2
+fx:9
+fy:4
+x :3
+y :3
+fx:9
+fy:9
+x :3
+y :4
+fx:9
+fy:16
+x :3
+y :5
+fx:9
+fy:25
+x :4
+y :-5
+fx:16
+fy:25
+x :4
+y :-4
+fx:16
+fy:16
+x :4
+y :-3
+fx:16
+fy:9
+x :4
+y :-2
+fx:16
+fy:4
+x :4
+y :-1
+fx:16
+fy:1
+x :4
+y :0
+fx:16
+fy:0
+x :4
+y :1
+fx:16
+fy:1
+x :4
+y :2
+fx:16
+fy:4
+x :4
+y :3
+fx:16
+fy:9
+x :4
+y :4
+fx:16
+fy:16
+x :4
+y :5
+fx:16
+fy:25
+x :5
+y :-5
+fx:25
+fy:25
+x :5
+y :-4
+fx:25
+fy:16
+x :5
+y :-3
+fx:25
+fy:9
+x :5
+y :-2
+fx:25
+fy:4
+x :5
+y :-1
+fx:25
+fy:1
+x :5
+y :0
+fx:25
+fy:0
+x :5
+y :1
+fx:25
+fy:1
+x :5
+y :2
+fx:25
+fy:4
+x :5
+y :3
+fx:25
+fy:9
+x :5
+y :4
+fx:25
+fy:16
+x :5
+y :5
+fx:25
+fy:25
