@@ -4,5 +4,6 @@
     puts "y :#{y}"
     puts "fx:#{x * x}"
     puts "fy:#{x * y}"
+    puts "-----------"
   end
 end
