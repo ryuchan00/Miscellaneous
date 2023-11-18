@@ -9,10 +9,10 @@ end
   formulation = []
   (1..i).each do |j|
     member = nCr(i, j) * (Rational(1.0, i) ** j) * ((Rational(1.0) - Rational(1.0, i)) ** (i - j))
-    puts member
+    # puts member
     formulation << member
     sum += member 
   end
-  # puts formulation.join(' + ')
-  puts "N=#{sprintf("%3d", i)}  #{sum.round(3)}"
+  puts formulation.join(' + ') + "= #{formulation.sum} = #{sum.round(3)}"
+  # puts "N=#{sprintf("%3d", i)}  #{sum.round(3)}"
 end

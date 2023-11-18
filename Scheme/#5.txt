@@ -1,0 +1,32 @@
+> (unify '(1 (? x) 3 4 (? z)) '(1 2 (? y) 4 5)))
+
+[Entering #[compound-procedure 13 unify]
+    Args: (1 (? x) 3 4 (? z))
+          (1 2 (? y) 4 5)]
+[failed
+      <== #[compound-procedure 13 unify]
+    Args: (1 (? x) 3 4 (? z))
+          (1 2 (? y) 4 5)]
+;Value: failed
+
+
+---
+aux追加後
+(trace unify)
+
+;Unspecified return value
+
+3 error> (unify '(1 (? x) 3 4 (? z)) '(1 2 (? y) 4 5)))
+
+[Entering #[compound-procedure 14 unify]
+    Args: (1 (? x) 3 4 (? z))
+          (1 2 (? y) 4 5)]
+[failed
+      <== #[compound-procedure 14 unify]
+    Args: (1 (? x) 3 4 (? z))
+          (1 2 (? y) 4 5)]
+;Value: failed
+
+ (display (query '(likes satoru (? x))))
+(((x) . keiko) ((x) . apple))
+;Unspecified return value
